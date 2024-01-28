@@ -1,0 +1,35 @@
+{% load i18n static %}
+
+<head>
+
+    {% block dark-mode-vars %}
+    <link rel="stylesheet" href="{% static 'admin/css/dark_mode.css' %}">
+    <script src="{% static 'admin/js/theme.js' %}" defer></script>
+    {% endblock %}
+
+    {% if not is_popup and is_nav_sidebar_enabled %}
+    <link rel="stylesheet" href="{% static 'admin/css/nav_sidebar.css' %}">
+    <script src="{% static 'admin/js/nav_sidebar.js' %}" defer></script>
+    {% endif %}
+
+    {% block extrastyle %}{% endblock %}
+    {% block extrahead %}{% endblock %}
+
+    {% if LANGUAGE_BIDI %}
+    <!-- <link rel="stylesheet" href="{% block stylesheet_rtl %}{% static 'admin/css/rtl.css' %}{% endblock %}">
+    <link rel="stylesheet" href="{% static 'admin/css/responsive_rtl.css' %}"> -->
+    {% endif %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% block stylesheet %}{% static 'admin/css/base.css' %}{% endblock %}">
+    <link rel="stylesheet" href="{% static 'admin/css/responsive.css' %}">
+
+    {% block blockbots %}
+    <meta name="robots" content="NONE,NOARCHIVE">
+    {% endblock %}
+
+    <script src="{% static 'hola.js' %}"></script>
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
