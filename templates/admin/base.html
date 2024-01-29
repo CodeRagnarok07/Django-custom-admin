@@ -10,30 +10,41 @@
   %}">
   <a href="#content-start" class="skip-to-content-link">{% translate 'Skip to main content' %}</a>
   <!-- Container -->
-  <div id="container">
+  <!-- Header -->
 
+  <header>
     {% if not is_popup %}
-    <!-- Header -->
-    {% include 'admin/components/header.html' %}
-
-    <!-- END Header -->
     <nav aria-label="{% translate 'Breadcrumbs' %}" class="
-    flex px-5 py-3 text-gray-700  bg-gray-50 dark:bg-gray-800 dark:border-gray-700
-    [&.breadcrumbs]:inline-flex 
-    [&.breadcrumbs]:items-center 
-    [&.breadcrumbs]:space-x-1 
-    [&.breadcrumbs]:md:space-x-2 
-    [&.breadcrumbs]:rtl:space-x-reverse
-    [&.breadcrumbs>a]:ms-1
-    [&.breadcrumbs>a]:text-sm
-    [&.breadcrumbs>a]:font-medium
-    [&.breadcrumbs>a]:text-gray-700
-    [&.breadcrumbs>a]:hover:text-blue-600
-    [&.breadcrumbs>a]:md:ms-2
-    [&.breadcrumbs>a]:md:text-md
-    [&.breadcrumbs>a]:dark:text-gray-200
-    [&.breadcrumbs>a]:dark:hover:text-white
-    ">
+  flex flex-col justify-center
+   px-5 py-3 text-gray-700  bg-gray-50 dark:bg-gray-800 dark:border-gray-700
+  [&.breadcrumbs]:inline-flex 
+  [&.breadcrumbs]:items-center 
+  [&.breadcrumbs]:space-x-1 
+  [&.breadcrumbs]:md:space-x-2 
+  [&.breadcrumbs]:rtl:space-x-reverse
+  [&.breadcrumbs>a]:ms-1
+  [&.breadcrumbs>a]:text-sm
+  [&.breadcrumbs>a]:font-medium
+  [&.breadcrumbs>a]:text-gray-700
+  [&.breadcrumbs>a]:hover:text-blue-600
+  [&.breadcrumbs>a]:md:ms-2
+  [&.breadcrumbs>a]:md:text-md
+  [&.breadcrumbs>a]:dark:text-gray-200
+  [&.breadcrumbs>a]:dark:hover:text-white
+  ">
+      {% if not is_popup and is_nav_sidebar_enabled %}
+      <button
+        class="text-white  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  focus:outline-none dark:focus:ring-blue-800"
+        type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation"
+        aria-controls="drawer-navigation">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+      {% endif %}
+
       {% block nav-breadcrumbs %}
 
       {% block breadcrumbs %}
@@ -44,44 +55,51 @@
       {% endblock %}
 
       {% endblock %}
+
+      {% include 'admin/components/user-tools.html' %}
     </nav>
-
-
     {% endif %}
+    <!-- END Header -->
+  </header>
+  {% if not is_popup and is_nav_sidebar_enabled %}
+  {% block nav-sidebar %}
+  {% include 'admin/components/nav_sidebar.html' %}
+  {% endblock %}
+  {% endif %}
 
-    <div class="main" id="main">
-      {% if not is_popup and is_nav_sidebar_enabled %}
-      {% block nav-sidebar %}
-      {% include 'admin/components/nav_sidebar.html' %}
-      {% endblock %}
-      {% endif %}
-      <main id="content-start" class="content" tabindex="-1">
-        {% block messages %}
-        {% if messages %}
-        <ul class="messagelist">{% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message|capfirst }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endblock messages %}
-        <!-- Content -->
-        <div id="content" class="{% block coltype %}colM{% endblock %}">
-          {% block pretitle %}{% endblock %}
-          {% block content_title %}{% if title %}<h1 class="text-xl">{{ title }}</h1>{% endif %}{% endblock %}
-          {% block content_subtitle %}{% if subtitle %}<h2>{{ subtitle }}</h2>{% endif %}{% endblock %}
-          {% block content %}
-          {% block object-tools %}{% endblock %}
-          {{ content }}
-          {% endblock %}
-          {% block sidebar %}{% endblock %}
-          <br class="clear">
-        </div>
-        <!-- END Content -->
-        {% block footer %}<div id="footer"></div>{% endblock %}
-      </main>
-    </div>
-  </div>
+
+  <main class="m-5">
+    {% block messages %}
+    {% if messages %}
+    <ul class="messagelist">{% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message|capfirst }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endblock messages %}
+
+    <!-- Content -->
+    {% block pretitle %}{% endblock %}
+
+    {% block content_title %}{% if title %}<h1 class="text-3xl text-semibold mb-4 underline">{{ title }}</h1>{% endif %}
+    {% endblock %}
+
+    {% block content_subtitle %}{% if subtitle %}<h2 class="text-xl text-semibold mb-4 underline">{{ subtitle }}</h2>
+    {% endif %}{% endblock %}
+
+    {% block content %}
+    {% block object-tools %}{% endblock %}
+    {{ content }}
+    {% endblock %}
+    {% block sidebar %}{% endblock %}
+    <!-- END Content -->
+  </main>
+
+  {% block footer %}<div id="footer"></div>{% endblock %}
+
   <!-- END Container -->
+
+
 
   <!-- SVGs -->
   <svg xmlns="http://www.w3.org/2000/svg" class="base-svgs">

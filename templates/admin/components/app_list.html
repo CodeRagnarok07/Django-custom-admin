@@ -12,7 +12,7 @@
     <li class="list-none">
       <button type="button"
         class="flex gap-4 items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+        aria-controls="dropdown-{{ app.name }}" data-collapse-toggle="dropdown-{{ app.name }}">
 
         <!-- icon Element -->
         <!-- <svg
@@ -35,7 +35,7 @@
         <!-- icon Arrow -->
       </button>
 
-      <ul id="dropdown-example" class="hidden py-2 space-y-2">
+      <ul id="dropdown-{{ app.name }}" class="hidden py-2 space-y-2">
         {% for model in app.models %}
         <li class="list-none flex justify-between items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg 
            group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">

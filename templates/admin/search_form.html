@@ -1,20 +1,63 @@
 {% load i18n static %}
+
 {% if cl.search_fields %}
-<div id="toolbar"><form id="changelist-search" method="get" role="search">
-<div><!-- DIV needed for valid HTML -->
-<label for="searchbar"><img src="{% static "admin/img/search.svg" %}" alt="Search"></label>
-<input type="text" size="40" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar"{% if cl.search_help_text %} aria-describedby="searchbar_helptext"{% endif %}>
-<input type="submit" value="{% translate 'Search' %}">
-{% if show_result_count %}
-    <span class="small quiet">{% blocktranslate count counter=cl.result_count %}{{ counter }} result{% plural %}{{ counter }} results{% endblocktranslate %} (<a href="?{% if cl.is_popup %}{{ is_popup_var }}=1{% if cl.add_facets %}&{% endif %}{% endif %}{% if cl.add_facets %}{{ is_facets_var }}{% endif %}">{% if cl.show_full_result_count %}{% blocktranslate with full_result_count=cl.full_result_count %}{{ full_result_count }} total{% endblocktranslate %}{% else %}{% translate "Show all" %}{% endif %}</a>)</span>
-{% endif %}
-{% for pair in cl.params.items %}
-    {% if pair.0 != search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}">{% endif %}
-{% endfor %}
+<div>
+    <form method="get" role="search">
+        <div class="relative"><!-- DIV needed for valid HTML -->
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>
+            </div>
+
+            <input style="padding-left: 2.5rem;" type="text" size="40" name="{{ search_var }}" value="{{ cl.query }}"
+                id="searchbar" {% if cl.search_help_text %} aria-describedby="searchbar_helptext" {% endif %}
+                class="block w-full p-4 ps-10! pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+            <input type="submit" value="{% translate 'Search' %}"
+                class="text-white leading-none absolute inset-y-0 right-0 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+
+        </div>
+        {% if show_result_count %}
+        <span class="small quiet">
+            {% blocktranslate count counter=cl.result_count %}{{ counter }} result
+            {% plural %}{{ counter }} results
+            {% endblocktranslate %}
+            (<a href="?
+                    {% if cl.is_popup %}{{ is_popup_var }}=1
+                    {% if cl.add_facets %}&
+                    {% endif %}
+                    {% endif %}
+                    {% if cl.add_facets %}{{ is_facets_var }}
+                    {% endif %}">
+                {% if cl.show_full_result_count %}
+                {% blocktranslate with full_result_count=cl.full_result_count %}
+                {{ full_result_count }} total
+                {% endblocktranslate %}
+                {% else %}
+                {% translate "Show all" %}
+                {% endif %}
+            </a>)
+        </span>
+
+        {% endif %}
+
+        {% for pair in cl.params.items %}
+
+        {% if pair.0 != search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}">
+        {% endif %}
+
+        {% endfor %}
+
+        {% if cl.search_help_text %}
+        <br class="clear">
+        <div class="help" id="searchbar_helptext">{{ cl.search_help_text }}</div>
+
+        {% endif %}
+    </form>
+
 </div>
-{% if cl.search_help_text %}
-<br class="clear">
-<div class="help" id="searchbar_helptext">{{ cl.search_help_text }}</div>
-{% endif %}
-</form></div>
 {% endif %}

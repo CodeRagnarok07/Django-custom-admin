@@ -1,17 +1,38 @@
 {% load i18n admin_urls %}
-<div class="submit-row">
-{% block submit-row %}
-{% if show_save %}<input type="submit" value="{% translate 'Save' %}" class="default" name="_save">{% endif %}
-{% if show_save_as_new %}<input type="submit" value="{% translate 'Save as new' %}" name="_saveasnew">{% endif %}
-{% if show_save_and_add_another %}<input type="submit" value="{% translate 'Save and add another' %}" name="_addanother">{% endif %}
-{% if show_save_and_continue %}<input type="submit" value="{% if can_change %}{% translate 'Save and continue editing' %}{% else %}{% translate 'Save and view' %}{% endif %}" name="_continue">{% endif %}
-{% if show_close %}
+<div class="inline-flex rounded-md shadow-sm
+[&>input]:rounded-none!
+">
+
+    {% block submit-row %}
+    {% if show_save %}
+    <input type="submit" value="{% translate 'Save' %}" name="_save"
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700 dark:bg-green-700 dark:border-green-600 dark:text-white dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    {% endif %}
+    {% if show_save_as_new %}
+    <input type="submit" value="{% translate 'Save as new' %}" name="_saveasnew"
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700 dark:bg-green-700 dark:border-green-600 dark:text-white dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    {% endif %}
+    {% if show_save_and_add_another %}
+    <input type="submit" value="{% translate 'Save and add another' %}" name="_addanother"
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700 dark:bg-green-700 dark:border-green-600 dark:text-white dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    {% endif %}
+    {% if show_save_and_continue %}
+    <input type="submit"
+        value="{% if can_change %}{% translate 'Save and continue editing' %}{% else %}{% translate 'Save and view' %}{% endif %}"
+        name="_continue"
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    {% endif %}
+    {% if show_close %}
     {% url opts|admin_urlname:'changelist' as changelist_url %}
-    <a href="{% add_preserved_filters changelist_url %}" class="closelink">{% translate 'Close' %}</a>
-{% endif %}
-{% if show_delete_link and original %}
+    <a href="{% add_preserved_filters changelist_url %}"
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+        {% translate 'Close' %}</a>
+    {% endif %}
+    {% if show_delete_link and original %}
     {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
-    <a href="{% add_preserved_filters delete_url %}" class="deletelink">{% translate "Delete" %}</a>
-{% endif %}
-{% endblock %}
+    <a href="{% add_preserved_filters delete_url %}"
+        class="rounded-r-md inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-2 focus:ring-red-700 focus:text-red-700 dark:bg-red-700 dark:border-red-600 dark:text-white dark:hover:text-white dark:hover:bg-red-600 dark:focus:red-blue-500 dark:focus:text-white">
+        {% translate "Delete" %}</a>
+    {% endif %}
+    {% endblock %}
 </div>

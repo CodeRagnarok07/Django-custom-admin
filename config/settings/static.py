@@ -11,3 +11,8 @@ STATIC_ROOT = BASE_DIR / "static/"
 COMPRESS_ENABLED = True
 STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
+
+
+MEDIA_ROOT = "/media/"
+
+MEDIA_URL = "/static/img/"
