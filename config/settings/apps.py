@@ -6,7 +6,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # third party
-    # "compressor",  # new
+    "compressor",
     "ckeditor",
     # local apps
     "apps.ragnarok.apps.RagnarokConfig",

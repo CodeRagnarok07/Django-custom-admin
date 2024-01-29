@@ -27,7 +27,7 @@ class CantidadIngerediente(models.Model):
 
 class Receta(models.Model):
     name = models.CharField(max_length=100, name="nombre")
-    ingredientes = models.ManyToManyField(CantidadIngerediente, null=True, blank=True)
+    ingredientes = models.ManyToManyField(CantidadIngerediente)
     photo = models.ImageField(upload_to="recetas/recetas", null=True, blank=True)
     description = RichTextField()
 

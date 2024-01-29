@@ -1,4 +1,4 @@
-{% load i18n static %}
+{% load i18n static compress %}
 
 <head>
 
@@ -21,9 +21,10 @@
     {% endif %}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="{% block stylesheet %}{% static 'admin/css/base.css' %}{% endblock %}">
     <link rel="stylesheet" href="{% static 'admin/css/responsive.css' %}">
+
+
 
     {% block blockbots %}
     <meta name="robots" content="NONE,NOARCHIVE">
@@ -32,4 +33,7 @@
     <script src="{% static 'hola.js' %}"></script>
 
     <title>{% block title %}{% endblock %}</title>
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/admin.css' %}">
+    {% endcompress %}
 </head>
