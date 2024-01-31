@@ -1,0 +1,46 @@
+/* Fix for Django dark theme background */
+/* See https://github.com/django-ckeditor/django-ckeditor/issues/670 */
+.cke_reset_all tr:nth-child(even),
+.cke_reset_all tr:nth-child(odd),
+.cke_reset_all .row-form-errors,
+.cke_reset_all tr:nth-child(even) .errorlist,
+.cke_reset_all tr:nth-child(odd)+.row-form-errors,
+.cke_reset_all tr:nth-child(odd)+.row-form-errors .errorlist,
+.cke_reset_all input[type="text"],
+.cke_reset_all input[type="password"] {
+  background: inherit;
+  color: inherit;
+  background-color: #666 !important;
+}
+
+/* Fix for CKEditor source editor with Django dark theme */
+/* See https://github.com/django-ckeditor/django-ckeditor/issues/741 */
+textarea.cke_source {
+  color: revert;
+}
+
+.cke_bottom {
+  background-image: none !important;
+  background: #333 !important;
+  border-top: 1px solid #333 !important;
+  box-shadow: none !important;
+}
+
+.cke_path_item {
+  color: #fff !important;
+  text-shadow: none !important;
+}
+
+a.cke_path_item:hover {
+  background: #666 !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.cke_combo_text {
+  color: #fff !important;
+}
+
+.cke_inner {
+  background-color: transparent !important;
+}

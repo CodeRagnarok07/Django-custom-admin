@@ -1,8 +1,6 @@
 'use strict';
 {
-    window.addEventListener('load', function (e) {
-
-        console.log("hola mundo")
+    window.addEventListener('load', function(e) {
 
         function setTheme(mode) {
             if (mode !== "light" && mode !== "dark" && mode !== "auto") {

@@ -777,7 +777,7 @@ td ul.errorlist+textarea {
 
 /* BREADCRUMBS */
 
-#div.breadcrumbs {
+div.breadcrumbs {
     background: var(--breadcrumbs-bg);
     padding: 10px 40px;
     border: none;
@@ -785,11 +785,11 @@ td ul.errorlist+textarea {
     text-align: left;
 }
 
-#div.breadcrumbs a {
+div.breadcrumbs a {
     color: var(--breadcrumbs-link-fg);
 }
 
-#div.breadcrumbs a:focus,
+div.breadcrumbs a:focus,
 div.breadcrumbs a:hover {
     color: var(--breadcrumbs-fg);
 }
@@ -1255,4 +1255,8 @@ a.deletelink:hover {
     border: 0;
     color: var(--body-fg);
     background-color: var(--body-bg);
+}
+
+input {
+    background-color: transparent !important;
 }
