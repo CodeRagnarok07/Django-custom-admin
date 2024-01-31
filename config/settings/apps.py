@@ -16,6 +16,6 @@ INSTALLED_APPS = [
     # "compressor",
     "ckeditor",
     # local apps
-    "apps.ragnarok",
+    # "apps.ragnarok",
     "apps.recetas",
 ]

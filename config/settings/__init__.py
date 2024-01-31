@@ -45,3 +45,7 @@ MIDDLEWARE = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 ROOT_URLCONF = "config.urls"
+
+
+LOGIN_URL = "signin/"
+LOGIN_REDIRECT_URL = "dashboard/"
