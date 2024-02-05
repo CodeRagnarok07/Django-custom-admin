@@ -20,6 +20,6 @@ from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
-    path("dashboard/", admin.site.urls),
-    path("", admin.site.login),
+    path("django/dashboard/", admin.site.urls),
+    path("django/", admin.site.login),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
